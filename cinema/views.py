@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.core.serializers import serialize
 from django.db.models import F, Count
-from rest_framework import viewsets, mixins
+from rest_framework import status, viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -117,9 +117,9 @@ class MovieViewSet(
 
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, 201)
+            return Response(serializer.data, status.HTTP_200_OK)
 
-        return Response(serializer.errors, 400)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
 
 class MovieSessionViewSet(viewsets.ModelViewSet):
