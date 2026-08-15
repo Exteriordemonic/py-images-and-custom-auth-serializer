@@ -40,7 +40,7 @@ class Actor(models.Model):
 
 def custom_upload_to(instance, filename):
     _, ext = os.path.splitext(filename)
-    return f"{slugify(instance.title)}-{uuid4}{ext}"
+    return f"{slugify(instance.title)}-{uuid4()}{ext}"
 
 
 class Movie(models.Model):
